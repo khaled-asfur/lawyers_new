@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="../../js/EasyAutocomplete/easy-autocomplete.min.css">
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+  
+
+<input id="countries" />
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="../../js/EasyAutocomplete/jquery.easy-autocomplete.min.js"></script> 
+<script>
+var options = {
+			url: "autocomplete_name_identity.php",
+		    getValue: "name",
+		    list: {
+		        match: {
+		            enabled: true
+		        }
+		    },
+		    theme: "plate-dark"
+		};
+		$("#countries").easyAutocomplete(options);
+    
+ </script>
+ 
+</body>
+</html>

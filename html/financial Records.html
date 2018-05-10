@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>الأمور المالية</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/publicStyle.css"/>
+        <link rel="stylesheet" href="../css/headerStyle.css"/>
+        <link rel="stylesheet" href="../css/searchsectionStyle.css"/>
+        <link rel="stylesheet" href="../css/tablesectionStyle.css"/>
+        <link rel="stylesheet" href="../css/show-detials-section.css"/>
+        <link rel="stylesheet" href="../css/financialRecords.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    </head>
+    <body dir="rtl">
+        
+        <!--start header-->
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                 
+                <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </button>
+                    <a class="navbar-brand" href="homePage.php"><i class="fas fa-gavel"></i> نظام المحامين</a>                                        <img src="../image/2.jpeg" class="image-header" width="40px" height="40px" id="image-laywer">
+                </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                          <li><a href="records.php">الجلسات</a></li>
+                          <li><a href="caseEnded.html">القضايا المنتهية </a></li>
+                          <li><a href="customers.php">الزبائن</a></li>
+                          <li><a href="../php/Lowyer.php">المستخدمين</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">مرحبا بعودتك!
+                                <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#"><i class="material-icons">settings</i>الاعدادت</a></li>
+                                      <li><a href="#"><i class="material-icons">&#xE314;</i>خروج</a></li>
+                                    </ul>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+            </nav>
+        </header>
+        <!--end header-->
+        
+        
+        <!--start search and add new button-->
+        <section class="sec-search text-center">
+            <div class="container">
+                <div class="row">
+                     <form class="form-search">
+                        <input type="text" placeholder="ادخل رقم الهوية او اسم العميل" name="search-name-Id" autocomplete="on"/>
+                        <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                
+                <div class="row">
+                     <form class="form-search">
+                        <input type="text" placeholder=" ادخل رقم القضية" name="search-name-Id" autocomplete="on"/>
+                        <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary" id="btn-addNewFinancial">اضافة سجل مالي جديد<i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+        <!--end search and add new button-->
+        
+        
+        <!--table show finanical records details-->
+        <section class="table-section">
+            <div class="container">
+                <div class="row">
+                    <table class="table-section table-bordered table-condensed table-hover">
+                        <thead class="thead-light">
+                            <th>الرقم</th>
+                            <th>قيمة الاتعاب</th>
+                            <th>رقم القضية</th>
+                            <th> الية الدفع</th>
+                            <th>تم التسديد</th>
+                            <th>الأحداث</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><input type="text" value="550"/></td>
+                                <td><input type="text" value="1"/></td>
+                               <td><input type="text" value="شيكات"/></td>
+                               <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
+                               <td class="actions">
+                                    <button type="button" class="btn btn-primary edit-button">
+                                        <i class="fas fa-edit" style="margin-left:5px"></i>تعديل 
+                                    </button>
+                                    <button type="button" class="btn btn-info view-button">
+                                        <i class="fas fa-eye" style="margin-left:5px"></i>تفاصيل
+                                    </button>
+                                    <button type="button"  class="btn btn-danger delete-button">
+                                        <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><input type="text" value="1200"/></td>
+                                <td><input type="text" value="2"/></td>
+                               <td><input type="text" value="شيكات"/></td>
+                               <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
+                               <td class="actions">
+                                    <button type="button" class="btn btn-primary edit-button">
+                                        <i class="fas fa-edit" style="margin-left:5px"></i>تعديل 
+                                    </button>
+                                    <button type="button" class="btn btn-info view-button">
+                                        <i class="fas fa-eye" style="margin-left:5px"></i>تفاصيل
+                                    </button>
+                                    <button type="button"  class="btn btn-danger delete-button">
+                                        <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><input type="text" value="550"/></td>
+                                <td><input type="text" value="3"/></td>
+                               <td><input type="text" value="شيكات"/></td>
+                               <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
+                               <td class="actions">
+                                    <button type="button" class="btn btn-primary edit-button">
+                                        <i class="fas fa-edit" style="margin-left:5px"></i>تعديل 
+                                    </button>
+                                    <button type="button" class="btn btn-info view-button">
+                                        <i class="fas fa-eye" style="margin-left:5px"></i>تفاصيل
+                                    </button>
+                                    <button type="button"  class="btn btn-danger delete-button">
+                                        <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                        <tfoot>
+                            <td colspan="2">يظهر 3 من 10</td>
+                            <td colspan="4" class="nextPrevoiusButton">
+                                <button type="button" value="arrowLeft" id="arrowRight" class="btn btn-light" disabled>
+                                    <i class="fas fa-angle-double-right"></i>
+                                </button>
+                                <button type="button" value="1" class="btn btn-light" >1</button>
+                                <button type="button" value="1" class="btn btn-light">2</button>
+                                <button type="button" value="1" class="btn btn-light">3</button>
+                                <button type="button" value="arrowLeft" id="arrowLeft" class="btn btn-light">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </button>
+                            </td>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!--end show finanical records details--->
+        
+        <!--show anouther details dialog-->
+        <section class=" overlay text-center" id="show-details">
+            <div class="container">
+                <span class="close-btn">
+                    <i onclick="document.getElementById('show-details').style.display='none'" class="fa fa-window-close" aria-hidden="true"></i>
+                </span>
+                <h2 class="super-title">تفاصيل الية الدفع </h2>
+                <div class="row opttion-one-checks">
+                    <h2 class="title-section">شيكات </h2>
+                    <form>
+                        <div class="info">
+                            <label class="sub-title">اسم صاحب الشك</label>
+                            <input class="info-value" type="text" value="" name="name"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title"> قيمة الشك</label>
+                            <input class="info-value" type="text" value="" name="value"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title">تاريخ الصرف</label>
+                            <input class="info-value" type="date" value="" name="date-checks"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title"> تاريخ التذكير</label>
+                            <input class="info-value" type="date" value="" name="date-remember"/>
+                        </div>
+                        <div class="btn-edit-delete">
+                            <button class="btn btn-danger"> <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف</button>
+                            <button class="btn btn-primary show-edit-checks-dialog" > 
+                                <i class="fas fa-edit" style="margin-left:5px"></i>حفظ التعديلات
+                            </button>
+                        </div>
+                    
+                    </form>
+                </div>
+                <div class='row option-two-Premiums'>
+                    <h2 class="title-section">أقساط</h2>
+                    <form>
+                       <div class="info">
+                            <label class="sub-title">قيمة الدفعة</label>
+                            <input class="info-value" type="text" value="" name="value"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title">تاريخ الدفعة </label>
+                            <input class="info-value" type="date" value="" name="date-premiums"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title"> تاريخ التذكير</label>
+                            <input class="info-value" type="date" value="" name="date-remember"/>
+                        </div>
+                        <div class="btn-edit-delete">
+                            <button class="btn btn-danger"> <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف</button>
+                            <button class="btn btn-primary show-edit-checks-dialog">حفظ التعديلات
+                             <i class="fas fa-edit" style="margin-left:5px"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!--end anouther details dialog-->
+
+        
+        <!--add new financial records-->
+        <section class="addNew-section overlay text-center" id="addNew">
+            <div class="container">
+                <span class="close-btn">
+                    <i onclick="document.getElementById('addNew').style.display='none'" class="fa fa-window-close" aria-hidden="true"></i>
+                </span>
+                <h2 class="super-title">اضافة سجل مالي جديد</h2>
+                <div class="search sec-search{">
+                    <div class="row">
+                        <form class="form-search">
+                            <input type="text" placeholder="ادخل اسم الموكل او رقم الهوية" name="search-name-Id" autocomplete="on"/>
+                            <datalist id="data-name-id"></datalist>
+                            <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                <div class="row">
+                    <form class="form-search">
+                        <input type="text" placeholder="ادخل رقم القضية" name="search-name-Id" autocomplete="on"/>
+                        <datalist id="data-number-case"></datalist>
+                        <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                </div>
+                <div class="detailsfinancial">
+                    <form method="post">
+                        <div class="info">
+                            <label class="sub-title">القيمة الأجمالية للأتعاب</label>
+                            <input class="info-value" type="text" name="financila-value"/>
+                        </div>
+                        <!--Radio group-->
+                        <div class="form-check radio-pink-gap ">
+                            <input class="form-check-input with-gap" name="groupTypeFinancial" type="radio" id="radio100" value="money">
+                            <label class="form-check-label " for="radio100">كاش</label>
+                        </div>
+                        <div class="form-check radio-pink-gap ">
+                            <input class="form-check-input with-gap" name="groupTypeFinancial" type="radio" id="radio101" value="prem">
+                            <label class="form-check-label" for="radio101">أقساط</label>
+                        </div>
+                        <div class="form-check radio-pink-gap">
+                            <input class="form-check-input " name="groupTypeFinancial" type="radio" id="radio102" value="checks">
+                            <label class="form-check-label" for="radio102">شيكات </label>
+                        </div>
+                        <!--Radio group-->
+                        <button class="btn btn-primary submit-type-of-financial" type="button" id="submit-type-of-financial">التالي
+                            <i class="fas fa-arrow-right" style="margin-left:5px"></i></button>
+                  
+                    <!--div add detials for new checks-->
+                    <div  class="checks-add-details">
+                        <div class="detail-checks">
+                            <h2>شيكات</h2>
+                            <div class="info">
+                                <label  class="sub-title" for="name">اسم صاحب الشيك </label>
+                                <input  class="info-value" type="text" name="name"/>
+                            </div>
+                            <div class="info">
+                                <label class="sub-title" for="date">تاريخ الصرف </label>
+                                <input class="info-value" type="date" name="date"/>
+                            </div>
+                            <div class="info">
+                                <label  class="sub-title" for="time">وقت التذكير</label>
+                                <input class="info-value" type="time"  date="time"/>
+                                </div>
+                            </div>
+                                <button class="btn btn-primary add-checks-div" type="button">اضافة <i class="fas fa-plus" style="margin-left:5px"></i> </button>
+                        </div>
+                        <!--end form add details for new checks-->
+                        
+                        <!-- form add detaild for new prem-->
+                        <div  class="prem-add-details">
+                            <div class="prem-details">
+                                <h2>أقساط</h2>
+                                <div class="info">
+                                    <label  class="sub-title" for="name">قيمة القسط</label>
+                                    <input  class="info-value" type="text" name="name"/>
+                                </div>
+
+                                <div class="info">
+                                    <label class="sub-title" for="date">تاريخ الدفع</label>
+                                    <input class="info-value" type="date" name="date"/>
+                                </div>
+
+                                <div class="info">
+                                    <label  class="sub-title" for="time">وقت التذكير</label>
+                                    <input class="info-value" type="time"  date="time"/>
+                                </div>
+                            </div>
+                                <button class="btn btn-primary add-prem-div" type="button">اضافة
+                                    <i class="fas fa-plus" style="margin-left:5px"></i>
+                                </button>
+                        </div>
+                        <!--end form add details for new prem-->
+                        <button class="btn btn-success" type="submit">حفظ
+                                <i class="fas fa-save"  style="margin-left:5px"></i>
+                        </button>
+                        </form>
+                    </div>
+                </div>
+        </section>
+        <!--end new financial records-->
+        
+        <!--start footer section-->
+        <footer>
+            <span>
+                تم انتاجه في 2018 .جميع الحقوق محفوظة
+                <i class="fa fa-copyright"></i>
+            </span>
+        </footer>
+        <!--end footer section-->
+        
+        
+                    
+                
+        
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/nicescroll.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+        <script src="../js/financialRecords.js"></script>
+    </body>
+</html>

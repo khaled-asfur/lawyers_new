@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>المحامين</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/publicStyle.css"/>
+        <link rel="stylesheet" href="../css/headerStyle.css"/>
+        <link rel="stylesheet" href="../css/searchsectionStyle.css"/>
+        <link rel="stylesheet" href="../css/tablesectionStyle.css"/>
+        <link rel="stylesheet" href="../css/show-detials-section.css"/>
+        <link rel="stylesheet" href="../css/Lowyer.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    </head>
+    <body dir="rtl">
+        
+        <!--start header-->
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                 
+                <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </button>
+                    <a class="navbar-brand" href="#"><i class="fas fa-gavel"></i> نظام المحامين</a>
+                </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                          <li><a href="records.html">الجلسات</a></li>
+                          <li><a href="caseEnded.html">القضايا المنتهية </a></li>
+                          <li><a href="customers.html">الزبائن</a></li>
+                          <li><a href="financial%20Records.html">الأمور المالية</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">مرحبا بعودتك!
+                                <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#"><i class="material-icons">settings</i>الاعدادت</a></li>
+                                      <li><a href="#"><i class="material-icons">&#xE314;</i>خروج</a></li>
+                                    </ul>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+            </nav>
+        </header>
+        <!--end header-->
+        
+              <!--start search and add new button-->
+        <section class="sec-search text-center">
+            <div class="container">
+                <div class="row">
+                     <form class="form-search">
+                        <input type="text" placeholder="ادخل اسم المحامي" name="search-name-Id" autocomplete="on"/>
+                        <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                
+                <div class="row">
+                    <button class="btn btn-primary" id="btn-addNewLawyer">اضافة محامي جديد<i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+        <!--end search and add new button-->
+        
+        
+        
+    <!--table show finanical records details-->
+        <section class="table-section">
+            <div class="container">
+                <div class="row">
+                    <table class="table-section table-bordered table-condensed table-hover">
+                        <thead class="thead-light">
+                            <th>الرقم</th>
+                            <th>الاسم</th>
+                            <th>رقم الجوال</th>
+                            <th> الايميل </th>
+                            <th>الأحداث</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><input type="text" value="manar"/></td>
+                                <td><input type="text" value="2896881"/></td>
+                                <td><input type="email" value="manar-_odeh@hotmail.com"/></td>
+                                <td class="actions">
+                                    <button type="button" class="btn btn-primary edit-button">
+                                        <i class="fas fa-edit" style="margin-left:5px"></i>تعديل 
+                                    </button>
+                                    <button type="button" class="btn btn-info view-button">
+                                        <i class="fas fa-eye" style="margin-left:5px"></i>تفاصيل
+                                    </button>
+                                    <button type="button"  class="btn btn-danger delete-button">
+                                        <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                        <tfoot>
+                            <td colspan="2">يظهر 3 من 10</td>
+                            <td colspan="4" class="nextPrevoiusButton">
+                                <button type="button" value="arrowLeft" id="arrowRight" class="btn btn-light" disabled>
+                                    <i class="fas fa-angle-double-right"></i>
+                                </button>
+                                <button type="button" value="1" class="btn btn-light" >1</button>
+                                <button type="button" value="1" class="btn btn-light">2</button>
+                                <button type="button" value="1" class="btn btn-light">3</button>
+                                <button type="button" value="arrowLeft" id="arrowLeft" class="btn btn-light">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </button>
+                            </td>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!--end show finanical records details--->
+        
+        <!--dialog show anouther details--->
+        <section class="overlay show-details text-center" id="show-details">
+            <div class="container">
+                <span class="close-btn">
+                    <i onclick="document.getElementById('show-details').style.display='none'" class="fa fa-window-close" aria-hidden="true"></i>
+                </span>
+                
+                <h2 class="super-title">صلاحيات المستخدم</h2>
+                <div class="row">
+                     <label class="cont">عرض المستخدمين
+                          <input type="checkbox" checked="checked">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض الجلسات
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض العملاء
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض القضايا المنتهية
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label> 
+                        <label class="cont">عرض السجلات المالية
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label> 
+                    <div><button class="btn btn-success btn-save">حفظ التغيرات</button></div>
+                </div>
+            </div>
+        </section>
+        <!--dialog end anouther details--->
+        
+        <!--section add new Lawyer-->
+        <section class="overlay addLawyer text-center" id="addLawyer">
+            <div class="container">
+                   <h2 class="title-section">اضافة محامي جديد</h2>
+                <span class="close-btn">
+                    <i onclick="document.getElementById('addLawyer').style.display='none'" class="fa fa-window-close" aria-hidden="true"></i>
+                </span>
+                <form>
+
+                        <div class="info">
+                            <label class="sub-title">الاسم</label>
+                            <input class="info-value" type="text" value="" name="name"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title"> رقم الجوال</label>
+                            <input class="info-value" type="text" value="" name="value"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title">الايميل</label>
+                            <input class="info-value" type="email" value="" name="date-checks"/>
+                        </div>
+                         <div class="info">
+                            <label class="sub-title"> كلمة المرور</label>
+                            <input class="info-value" type="password" value="" name="date-remember"/>
+                        </div>
+                             <div class="info">
+                            <label class="sub-title"> تأكيد الكلمة</label>
+                            <input class="info-value" type="password" value="" name="date-remember"/>
+                        </div> <h2 class="super-title">صلاحيات المستخدم</h2>
+                <div class="row">
+                     <label class="cont">عرض المستخدمين
+                          <input type="checkbox" checked="checked">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض الجلسات
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض العملاء
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="cont">عرض القضايا المنتهية
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label> 
+                        <label class="cont">عرض السجلات المالية
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                    </label> 
+                    </div>
+                    <button class="btn btn-primary show-edit-checks-dialog" > 
+                                <i class="fas fa-edit" style="margin-left:5px"></i>حفظ التعديلات
+                    </button>
+                </form>
+            </div>
+        </section>
+        <!--end section add new Lawyer-->
+        
+        
+          <!--start footer section-->
+        <footer>
+            <span>
+                تم انتاجه في 2018 .جميع الحقوق محفوظة
+                <i class="fa fa-copyright"></i>
+            </span>
+        </footer>
+        <!--end footer section-->
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/nicescroll.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+        <script src="../js/Lawyer.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
