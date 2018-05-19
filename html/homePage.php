@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(empty($_SESSION["username"])){
-    header("Location: ../html/LogIn.php");
+if( !isset($_SESSION["username"]) ){
+    header("Location: LogIn.php");
 }
 /*$_SESSION["customers_page"]=1;
 $_SESSION["sessions_page"]=0;
@@ -11,9 +11,9 @@ $_SESSION["ended_procecutions"]=1;*/
 $user_name=$_SESSION["username"] ;
  $office_id=$_SESSION["office_id"] ;
  $profile_picture_url=$_SESSION["get_profile_picture_url"];
-/*echo$_SESSION["username"] ."<br>";
+echo$_SESSION["username"] ."<br>";
 echo $_SESSION["office_id"] ."<br>";
-echo $_SESSION["get_profile_picture_url"] ."<br>";*/
+echo $_SESSION["get_profile_picture_url"] ."<br>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,6 +85,11 @@ echo $_SESSION["get_profile_picture_url"] ."<br>";*/
             <div class="option text-center">
                 <div class="container">
                     <h2 class="h1">الخيارات</h2>
+                    <?php 
+                    echo$_SESSION["username"] ."<br>";
+                    echo $_SESSION["office_id"] ."<br>";
+                    echo $_SESSION["get_profile_picture_url"] ."<br>";
+                    ?>
                     <div class="row">
 
                  

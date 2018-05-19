@@ -29,10 +29,10 @@ function fill_show_session_dialog(name,procecution_id ,session_number ,session_d
       
 
 $(document).ready(function(){
-    $("body").niceScroll({
+   /* $("body").niceScroll({
            cursorcolor:"#138496",
            cursorwidth:"7px"
-    });
+    });*/
 
 
 
@@ -212,6 +212,7 @@ $(document).ready(function(){
             //اضافة على الداتا بيز بالستخدام االجاكس
         function insert_Session(  procecution_number ,session_number,session_date,remind_date,remind_time,actions){
             //don`t care until **
+            window.alert(procecution_number);
             if (window.XMLHttpRequest) {
               var  xmlhttp = new XMLHttpRequest();
             } else {
@@ -237,7 +238,7 @@ $(document).ready(function(){
             operation="insert";
             xmlhttp.open("GET", "../php/session_operations.php?procecution_number="+procecution_number+
             "&session_number="+session_number+"&session_date="+session_date+
-            "&remind_date="+remind_date+"&remind_time="+remind_time+"&actions="+actions+"&operation="+ operation,true);
+            "&remind_date="+remind_date+"&remind_time="+remind_time+"&actions="+actions+"&ended="+0+"&operation="+ operation,true);
             xmlhttp.send();
         }
 

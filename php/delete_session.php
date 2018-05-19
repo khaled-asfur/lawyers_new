@@ -1,6 +1,6 @@
 <?php 
 $id=$_GET["session_id"];
-include_once("calsses/Client.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/lawyers/"."php/classes/Client.php");
 $path=Client::get_path();
 include_once($path."php/DBConnect.php");
 //if($_SERVER["REQUEST_METHOD"]=="POST"){

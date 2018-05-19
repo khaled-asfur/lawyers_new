@@ -159,11 +159,10 @@ if($_SESSION["sessions_page"]!= 1){
                                         //اذا كانت هي رقم الهوية 
                                         $identity_number =$_POST["name_or_id"];
                                          $sess=new Session();
-                                         // الباراميترالاخير بحدد حالة القضية منتهية او لا .. 0 بحدد اني ببحث عن قضية غير منتهية 
-                                        $procecution_ids=Client::get_procecution_idS_using_identity_no($identity_number,$_SESSION["office_id"],0);
+                                        $procecution_ids=Client::get_procecution_idS_using_identity_no($identity_number,$_SESSION["office_id"]);
                                         if(!empty($procecution_ids) ){
                                         $str_procecution_ids=client:: format_proc_ids($procecution_ids);// تحويل ارقام القضايا من اري الى سترنج واحد فيه ارقام الجلسات مفصولة ب فواصل
-                                        $name=Client::get_customer_name_using_identity_no($identity_number);
+                                        $name=Client::get_customer_name_using_identity_no(123);
                                         $sess->show_sessions_info($str_procecution_ids,$name);
                                         }else { echo " يرجى التأكد من ان  رقم هوية صحيح وان القضية المرتبطة بهذا الموكل غير منتهية  ";}
                                         
@@ -171,8 +170,7 @@ if($_SESSION["sessions_page"]!= 1){
                                         // اذا كانت طريقة البحث هي الاسم
                                         $name=$_POST["name_or_id"];
                                         $sess=new Session();
-                                        // الباراميترالاخير بحدد حالة القضية منتهية او لا .. 0 بحدد اني ببحث عن قضية غير منتهية 
-                                       $procecution_ids=Client::get_procecution_ids_using_name($name,$_SESSION["office_id"],0);
+                                       $procecution_ids=Client::get_procecution_ids_using_name($name,$_SESSION["office_id"]);
                                        if(!empty($procecution_ids) ){
                                        $str_procecution_ids=client:: format_proc_ids($procecution_ids);// تحويل ارقام القضايا من اري الى سترنج واحد فيه ارقام الجلسات مفصولة ب فواصل
                                        $sess->show_sessions_info($str_procecution_ids,$name);    
@@ -185,8 +183,7 @@ if($_SESSION["sessions_page"]!= 1){
                                 if(isset($_POST["procecution_number"])){
                                     $procecution_number=$_POST["procecution_number"];
                                     $sess=new Session();
-                                    // الباراميترالاخير بحدد حالة القضية منتهية او لا .. 0 بحدد اني ببحث عن قضية غير منتهية 
-                                     $procecution_id=Client::get_procecution_id_using_procecution_no($procecution_number,$_SESSION["office_id"],0);
+                                     $procecution_id=Client::get_procecution_id_using_procecution_no($procecution_number,$_SESSION["office_id"]);
                                 
                                      
                                     if($procecution_id !=-1 ){
@@ -253,13 +250,13 @@ if($_SESSION["sessions_page"]!= 1){
                 <div class="row">
                     <form class="form-search" autocomplete="on">
                         <input id="search_name_id_no_input_dialog" type="text"  name="name_or_id" size="40" max-length="40" placeholder="ادخل الاسم او رقم الهوية " class="text-search" />
-                       <!-- <input id="search_name_id_no_button_dialog" type="submit" value="بحث" class="btn-search" style="width:83px"/> -->
+                        <input id="search_name_id_no_button_dialog" type="submit" value="بحث" class="btn-search" style="width:83px"/>
                      </form>
                 </div>
                 <div class="row">
                         <form class="form-search" autocomplete="on" >
                             <input id="dialog_search_procecution_number" name="procecution_number" type="text"  size="20" max-length="20" placeholder="ادخل رقم القضية" class="text-search"/>
-                         <!--   <input type="submit" value="ابحث" class="btn-search" style="width:83px"/>-->
+                            <input type="submit" value="ابحث" class="btn-search" style="width:83px"/>
                         </form>
                 </div>
 
@@ -280,7 +277,7 @@ if($_SESSION["sessions_page"]!= 1){
                         <input id="remind_time" class="info-value" type="time" value="" name="time-remember"/>
                     </div>
                     <div class="info">
-                        <label class="sub-title">الاجراءات المقررة في الجلسة</label>
+                        <label class="sub-title">الاجراءات المقررة على الجلسة</label>
                         <textarea id="actions" class="info-value" name="note"></textarea>
                     </div>
                     

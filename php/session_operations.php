@@ -1,15 +1,16 @@
 
 <?php 
-include_once("calsses/Client.php");
+
+
+include_once($_SERVER['DOCUMENT_ROOT']."/lawyers/"."php/classes/Client.php");
 $path=Client::get_path();
-include($path."php/DBConnect.php");
-include($path."php/classes/Client.php");
+//include($path."php/DBConnect.php");
 include_once("functions.php");
 
 if($_SERVER["REQUEST_METHOD"]=="GET"){
 
     $_SESSION["office_id"]=0;
-   $operation= $_GET["operation"];
+    $operation= $_GET["operation"];
 
     if($operation=="insert" ){
         // validate_string() from functions file
@@ -22,6 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     $session_date=$_GET["session_date"];
     $remind_date=$_GET["remind_date"];
      $remind_time=$_GET["remind_time"];
+     $ended=$_GET["ended"];
     $actions= validate_string($_GET["actions"]);
 
     if(empty($procecution_number)){ die("يرجى ادخال رقم القضية أولا");}
@@ -40,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
 */
     $conn =  DBConnect::getConnection();
     
-    $procecution_id=Client::get_procecution_id_using_procecution_no($procecution_number,$office_id);
+    $procecution_id=Client::get_procecution_id_using_procecution_no($procecution_number,$office_id,$ended);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } 

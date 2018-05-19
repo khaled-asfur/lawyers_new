@@ -1,11 +1,12 @@
 <?php
 session_start();
+
 include("../php/classes/Client.php");
 
-if(empty($_SESSION["username"])){
+if(empty($_SESSION["username"]) || $_SESSION["username"]==0){
     header("Location: LogIn.php");
 } 
-if($_SESSION["customers_page"]!= 1){
+if($_SESSION["ended_procecutions"]!= 1){
     header("Location: homePage.php");
 
 }
@@ -74,10 +75,6 @@ if($_SESSION["customers_page"]!= 1){
                         <button class="btn btn-primary">ابحث<i class="fas fa-search"></i></button>
                     </form>
                 </div>
-                <div class="row">
-          <?php  echo $_SESSION["username"]; ?>
-                    <button class="btn btn-primary" id="btn-addNewCustomer">اضافة عميل جديد<i class="fas fa-plus"></i></button>
-                </div>
             </div>
         </section>
         <!--end section search-->
@@ -138,12 +135,12 @@ if($_SESSION["customers_page"]!= 1){
                                         if(is_numeric($name_or_id)){ 
                                         // طريقة البحث هي رقم الهوية 
                                         $identity_number = $_POST["name_or_id"];
-                                        // 0 باراميتر بحدد فيه اني بدي اعرض القضايا غير المنتهية 
-                                        Client::show_customers_info_using_identity_no($identity_number,$office_id,0);
+                                        //1 باراميتر بحدد فيه اني ببحث عن القضايا المنتهية 
+                                        Client::show_customers_info_using_identity_no($identity_number,$office_id,1);
                                         } else{
                                         // طريقة البحث هي الاسم
                                         $name=$_POST["name_or_id"];
-                                        Client::show_customers_info_using_name($name,$office_id,0);                        
+                                        Client::show_customers_info_using_name($name,$office_id,1);                        
                                     }
 
 
@@ -151,19 +148,18 @@ if($_SESSION["customers_page"]!= 1){
                                 // اذا كانت طريقة البحث هي رقم القضية 
                                 if(isset($_POST["procecution_number"])){
                                     $procecution_number=$_POST["procecution_number"];
-                                    Client::show_customers_info_using_procecution_number($procecution_number,$office_id,0);
+                                    Client::show_customers_info_using_procecution_number($procecution_number,$office_id,1);
                                 }
                             
                             }
                             ?>
-                        <tr>
- <!--                           <th scope="row">#1</th>
+                      <!--  <tr>
+                            <th scope="row">#1</th>
                             <td><input class="cust_name" type="text" value="احمد السيد" name="name-customer" /></td>
                             <td><input class="cust_identity" type="text" value="29785631" name="IdIdentifiction"/></td>
                             <td><input class="proc_number" type="text" value="1" name="numberOfCase"/></td>
                             <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
                             <td class="actions">
-
                                 <button type="button" class="btn btn-info view-button" id="view-button">
                                     <i class="fas fa-eye" style="margin-legt:5px"></i>تفاصيل
                                 </button>
@@ -187,7 +183,7 @@ if($_SESSION["customers_page"]!= 1){
                                 </button>
                             </td>
                         </tr>
-                   
+                    
                     </tbody>
                     <tfoot>
                         <tr>
@@ -200,7 +196,7 @@ if($_SESSION["customers_page"]!= 1){
                             <button type="button" value="arrowLeft" id="arrowLeft" class="btn btn-light"><i class="fas fa-angle-double-left"></i></button>
                             </td>
                         </tr>
-                    </tfoot>-->
+                    </tfoot>--.
                 </table>
             </div>
         </section>

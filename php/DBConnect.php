@@ -11,6 +11,8 @@ class DBConnect{
     private static function  connectDB(){
         if(!self::$connected){
         self::$conn = mysqli_connect(self::$servername, self::$username, self::$password, self::$dbname);
+        //مشان اضيف عالداتا بيز نص عربي ، بدونه بصير اضيف رموز مش مفهوومة 
+        self::$conn->set_charset("utf8");
         self::$connected=true;
         }
         return self::$conn;

@@ -17,7 +17,10 @@ class Client{
             $uri .= $_SERVER['HTTP_HOST']."/";
             return $uri ;*/
       }
-/**** login page methods  */
+
+
+
+  /// login page  PAAAGE 00000000000000000000000000000000000000000000000000000 
 /** puts the privilage of thie user in the session */
 public static function put_privilages_in_session($user_id){
       $conn= DBConnect::getConnection();
@@ -38,7 +41,7 @@ public static function put_privilages_in_session($user_id){
                         $_SESSION["ended_procecutions"]=$row["ended_procecutions"];
                        
                   }  
-                  echo  $_SESSION["customers_page"];
+                 echo  $_SESSION["customers_page"];
                   echo $_SESSION["sessions_page"];
                   echo $_SESSION["financial_page"];
                   echo $_SESSION["users_page"];
@@ -50,6 +53,7 @@ public static function put_privilages_in_session($user_id){
 
 /****** end login page methods */
 
+ /// RECORDS  PAAAGE 00000000000000000000000000000000000000000000000000000
     public static function get_customer_name_using_identity_no($identity_number){
         $name="";
         $conn= DBConnect::getConnection();
@@ -86,16 +90,17 @@ public static function put_privilages_in_session($user_id){
                       return $name;
                   }
     }
+    
 
          // gets all procecution ids for this customer using his identity number
-         public static function get_procecution_ids_using_identity_no($identity_number,$office_id){
+         public static function get_procecution_ids_using_identity_no($identity_number,$office_id,$ended){
             $Procecution_ids=array();
          $conn= DBConnect::getConnection();
                if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
                }
-                      $sql="SELECT  id FROM procecutions where customer_id=(
-                      SELECT id FROM customers where identity_number= $identity_number and  office_id = $office_id );";
+                      $sql="SELECT  id  FROM procecutions where customer_id=(
+                      SELECT id FROM customers where identity_number= $identity_number and  office_id = $office_id ) and   ended=$ended;";
                       $result=$conn->query($sql);
                       if ($result->num_rows ==0 ) { 
                             echo " p u identity error" ;
@@ -110,14 +115,14 @@ public static function put_privilages_in_session($user_id){
     
     
             // gets all procecution ids for this customer using his name
-               public  function get_procecution_ids_using_name($name,$office_id){
+               public  function get_procecution_ids_using_name($name,$office_id, $ended){
                 $Procecution_ids=array();
              $conn= DBConnect::getConnection();
                    if ($conn->connect_error) {
                    die("Connection failed: " . $conn->connect_error);
                    }
                           $sql="SELECT id FROM procecutions where customer_id=(
-                          SELECT id FROM customers where name= \"$name\" and  office_id = $office_id );";   
+                          SELECT id FROM customers where name= \"$name\" and  office_id = $office_id  ) and   ended=$ended;";   
                           $result=$conn->query($sql);
                           if ($result->num_rows ==0 ) { echo " p u name Error ";}
                           else{
@@ -128,20 +133,27 @@ public static function put_privilages_in_session($user_id){
                         }
                    }
                            // gets  procecution id  using  procecution number
-         public static function get_procecution_id_using_procecution_no($procecution_number,$office_id){
+         public static function get_procecution_id_using_procecution_no($procecution_number,$office_id,$ended){
             $Procecution_id="ex" ;
          $conn= DBConnect::getConnection();
                if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
                }
-              $sql=" SELECT id FROM procecutions where procecution_number = $procecution_number 
-              and (select office_id from customers where customers.id = procecutions.customer_id) = $office_id;";
+              $sql=" SELECT id ,ended FROM procecutions where procecution_number = $procecution_number 
+              and (select office_id from customers where customers.id = procecutions.customer_id) = $office_id  and   ended=$ended;";
                   
                       $result=$conn->query($sql);
                       if ($result->num_rows ==0 ) { echo $procecution_number.' لا يوجد قضية تحمل هذا الرقم يرجى التأكد من رقم القضية  ';}
                       else{
                        while($row = $result->fetch_assoc()) {
-                        $Procecution_id=$row["id"];
+                              if($row["ended"]==1 && $ended == 0){
+                                     echo " انت تبحث عن قضية منتهية يرجى البحث عنها في صفحة القضايا المنتهية ";
+                              }
+                               else  if($row["ended"]==0 && $ended == 1){
+                                    echo " انت تبحث عن قضية غير منتهية يرجى البحث عنها في صفحة القضايا غير المنتهية ";
+                              }else{
+                                    $Procecution_id=$row["id"];
+                              }
                        }
                        
                        return $Procecution_id;
@@ -176,7 +188,7 @@ public static function put_privilages_in_session($user_id){
                            die("Connection failed: " . $conn->connect_error);
                            }
                                   $sql="SELECT procecution_number FROM procecutions where customer_id=(
-                                  SELECT id FROM customers where name= \"$name\" and  office_id = $office_id );";   
+                                  SELECT id FROM customers where name= \"$name\" and  office_id = $office_id )  and   ended=0;";   
                                   $result=$conn->query($sql);
                                   if ($result->num_rows ==0 ) { echo $msg;}
                                   else{
@@ -186,4 +198,158 @@ public static function put_privilages_in_session($user_id){
                                    return $Procecution_numbers;
                                 }
                            }
+
+
+
+
+
+                                                 /// customers  page 00000000000000000000000000000000000000000000000000000
+                           public  function show_customers_info_using_identity_no($identity_number,$office_id,$ended){
+                                 // ended must be 1 if you search for an ended procecution 
+                                 // 0 otherwise
+                                    $counter=1;
+                                    $conn= DBConnect::getConnection();
+                                    if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                    }
+                                          $sql="SELECT customers.name , customers.id as cust_id ,procecutions.id as proc_id ,procecution_number FROM customers
+                                          inner join procecutions on identity_number = $identity_number and customer_id = customers.id and ended = $ended and office_id=$office_id";
+                                     $result=$conn->query($sql);
+                                     if ($result->num_rows ==0 ){ 
+                                         echo "يرجى التأكد من صحة المعلومات لا يوجد قضايا ";
+                                        }
+                                      else{
+                                          while($row = $result->fetch_assoc()) {
+                                                $name=$row["name"]; 
+                                                $procecution_number = $row["procecution_number"];
+                                                $customer_id = $row["cust_id"];
+                                                $procecution_id = $row["proc_id"];
+
+                                                    echo '
+                                                    <tr>
+                                                    <th scope="row"> '.$counter .'</th>
+                                                    <td><input type="text" value="'.$name.'"  /></td>
+                                                    <td><input type="text" value=" '.$identity_number.'" /></td>
+                                                    <td><input type="text" value="'.$procecution_number.'" /></td>
+                                                    <td style="display:none" ><input  type="text" value="'.$customer_id.' " /></td>
+                                                    <td style="display:none" ><input type="text" value="'.$procecution_id.'"/></td>
+                                                    <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
+                                                    <td class="actions">
+
+
+                                                    <button  type="button" class=" customer_details btn btn-info view-button">
+                                                    <i class="fas fa-eye" style="margin-legt:5px"></i>تفاصيل
+                                              </button>
+                                                        <button type="button"  class="btn btn-danger delete-button">
+                                                            <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                 ';
+                                                $counter++;
+                                                    }
+                                                  }
+                                                   
+                                                }
+       public  function show_customers_info_using_name($name,$office_id,$ended){
+            // ended must be 1 if you search for an ended procecution 
+            // 0 otherwise
+            $counter=1;
+            $conn= DBConnect::getConnection();
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql="SELECT customers.identity_number , customers.id as cust_id ,procecutions.id as proc_id ,procecution_number FROM customers
+                   inner join procecutions on customers.name = \"$name\" and customer_id = customers.id and ended = $ended and office_id=$office_id";
+            $result=$conn->query($sql);
+            if ($result->num_rows ==0 ){ 
+                echo "يرجى التأكد من كتابة الاسم  لا يوجد قضايا ";
+            }
+            else{
+                 while($row = $result->fetch_assoc()) {
+                        $identity_number=$row["identity_number"]; 
+                        $procecution_number = $row["procecution_number"];
+                        $customer_id = $row["cust_id"];
+                        $procecution_id = $row["proc_id"];
+                     
+                        echo '
+                              <tr>
+                              <th scope="row"> '.$counter .'</th>
+                              <td><input type="text" value="'.$name.'"  /></td>
+                              <td><input type="text" value=" '.$identity_number.'" /></td>
+                              <td><input type="text" value="'.$procecution_number.'" /></td>
+                              <td style="display:none" ><input  type="text" value="'.$customer_id.' " /></td>
+                              <td style="display:none" ><input type="text" value="'.$procecution_id.'"/></td>
+                              <td><button name="done" ><i class="fas fa-check-circle"></i></button></td>
+                              <td class="actions">
+                             
+
+                              <button  type="button" class=" customer_details btn btn-info view-button">
+                              <i class="fas fa-eye" style="margin-legt:5px"></i>تفاصيل
+                        </button>
+                              <button type="button"  class="btn btn-danger delete-button">
+                                    <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                              </button>
+                               </td>
+                              </tr>
+                              ';
+                        $counter++;
+                        }
+                  }
+                  }
+
+                  public  function show_customers_info_using_procecution_number($procecution_number,$office_id,$ended){
+                        // ended must be 1 if you search for an ended procecution 
+                        // 0 otherwise
+                        $counter=1;
+                        $conn= DBConnect::getConnection();
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $sql="SELECT customers.name, customers.identity_number , customers.id as cust_id ,procecutions.id as proc_id ,ended FROM customers
+                               inner join procecutions on procecutions.procecution_number = $procecution_number and customer_id = customers.id  and office_id=$office_id";
+                        $result=$conn->query($sql);
+                        if ($result->num_rows ==0 ){ 
+                            echo "يرجى التأكد من رقم القضية ، لا يوجد قضايا تحمل هذا الرقم ";
+                        }
+                        else{
+                             while($row = $result->fetch_assoc()) {
+                                   if($row["ended"]==1 && $ended == 0){
+                                    echo " انت تبحث عن قضية منتهية يرجى البحث عنها في صفحة القضايا المنتهية ";
+                                   }
+                                 else  if($row["ended"]==0 && $ended == 1){
+                                    echo " انت تبحث عن قضية غير منتهية يرجى البحث عنها في صفحة القضايا غير المنتهية ";
+                              }else{
+
+                                    $identity_number=$row["identity_number"]; 
+                                    $name = $row["name"];
+                                    $customer_id = $row["cust_id"];
+                                    $procecution_id = $row["proc_id"];
+                                 
+                                    echo '
+                                          <tr>
+                                          <th scope="row"> '.$counter .'</th>
+                                          <td><input class="cust_name"  type="text" value="'.$name.'"  /></td>
+                                          <td><input class="cust_identity" type="text" value=" '.$identity_number.'" /></td>
+                                          <td><input class="proc_number" type="text" value="'.$procecution_number.'" /></td>
+                                          <td style="display:none" ><input  type="text" value="'.$customer_id.' " /></td>
+                                          <td style="display:none" ><input type="text" value="'.$procecution_id.'"/></td>
+                                          <td><button name="done" ><i class="end_procecution fas fa-check-circle"></i></button></td>
+                                          <td class="actions">
+
+                                          <button  type="button" class=" customer_details btn btn-info view-button">
+                                                <i class="fas fa-eye" style="margin-legt:5px"></i>تفاصيل
+                                          </button>
+                                          <button type="button"  class="btn btn-danger delete-button">
+                                                <i class="fas fa-trash-alt" style="margin-left:5px"></i>حذف
+                                          </button>
+                                           </td>
+                                          </tr>
+                                          ';
+                                    $counter++;
+                                    }
+                              }
+                              }
+                              }
+                                                                    
 }
